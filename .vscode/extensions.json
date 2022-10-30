@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "pflannery.vscode-versionlens",
+    "wix.vscode-import-cost"
+  ]
+}

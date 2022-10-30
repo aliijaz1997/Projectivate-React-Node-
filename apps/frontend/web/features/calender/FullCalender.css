@@ -1,0 +1,11 @@
+.fc-h-event .fc-event-main {
+  color: rgb(102, 102, 102);
+}
+.fc-h-event {
+  background-color: rgb(242, 242, 242);
+  border: none;
+  padding: 0.4rem;
+}
+.fc-toolbar {
+  margin-top: 1.2rem;
+}

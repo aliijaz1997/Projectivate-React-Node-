@@ -1,0 +1,10 @@
+{
+  "stage": {
+    "selected": "",
+    "list": [
+      { "id": "387b5acc-e9a5-4135-ac2e-8c130409ee1d", "name": "To Do" },
+      { "id": "", "name": "Doing" },
+      { "id": "", "name": "Done" }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+scripts:
+  prepare:
+    default: yarn install && nps prepare.back
+    docker: docker-compose up -d
+    migrate-dev: npx prisma migrate dev
+    front: yarn
+    back: cd apps/backend/ && nps prepare.docker prepare.migrate-dev
+    ci:
+      default: nps prepare.front.ci && nps prepare.back.ci
+      front: yarn install --frozen-lockfile && nps prepare.ci.prisma-gen
+      prisma-gen: cd apps/backend/ && npx prisma generate
+      back: yarn install --frozen-lockfile && nps prepare.ci.prisma-gen
+
+  format:
+    default: nps format.front && nps format.back
+    front: cd apps/frontend/ && npm run format
+    back: cd apps/backend/ && npm run format
+
+  dev:
+    default: npx turbo run start:dev
+    front: cd apps/frontend/ && npm run dev
+    back: cd apps/backend/ && npm run start:dev
+
+  test:
+    watch:
+      front: cd apps/frontend/ && npm run test
+      back: cd apps/backend/ && npm run test:watch
+    ci:
+      default: nps test.ci.front test.ci.back
+      front: cd apps/frontend/ && npm run test:ci
+      back: cd apps/backend/ && npm run test:ci
+
+  build:
+    default: npx turbo run build
+    front: cd apps/frontend/ && npm run build
+    back: cd apps/backend/ && npm run build
+
+  storybook: cd apps/frontend/ && npm run storybook

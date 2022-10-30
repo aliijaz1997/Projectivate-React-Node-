@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  api:
+    image: projectivate/server
+    depends_on:
+      - postgres
+    env_file:
+      - ./apps/backend/.env
+    environment:
+      # Overriding variables from .env file
+      DATABASE_URL: "postgresql://test:test@postgres:5432/pm"
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+
+    networks:
+      - app-network
+
+  frontend:
+    image: projectivate/client
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    env_file:
+      - ./apps/frontend/.env
+
+  postgres:
+    image: postgres:14
+    environment:
+      - POSTGRES_DB=pm
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  pg_data:

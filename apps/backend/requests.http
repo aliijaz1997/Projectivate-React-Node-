@@ -1,0 +1,33 @@
+
+@baseUrl = http://localhost/api
+@authToken = {{login.response.body.jwtToken}}
+
+
+# @name register
+POST {{baseUrl}}/auth/register
+content-type: application/json
+
+{
+    "username": "test3",
+    "email": "test3@test.com",
+    "password": "P@$$w0rd"
+}
+
+###
+
+# @name login
+POST {{baseUrl}}/auth/login
+content-type: application/json
+
+{
+    "username": "test2",
+    "email": "test2@test.com",
+    "password": "P@$$w0rd"
+}
+
+###
+
+# @name getProjects
+GET {{baseUrl}}/projects
+Authorization: Bearer {{authToken}}
+content-type: application/json
